@@ -22,3 +22,8 @@ task run(dependsOn: 'classes', type: JavaExec) {
     main = 'me.jerrywang.chapter2.PayrollSystem'
     classpath = sourceSets.main.runtimeClasspath
 }
+
+task runDI(dependsOn: 'classes', type: JavaExec) {
+    main = 'me.jerrywang.chapter2.dependencyinjection.PayrollSystem'
+    classpath = sourceSets.main.runtimeClasspath
+}

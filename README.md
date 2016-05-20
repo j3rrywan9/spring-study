@@ -38,3 +38,13 @@ Spring has objects of the `BeanFactory` type that behave like the factory object
 
 ### ApplicationContext
 The `org.springframework.context.ApplicationContext` interface defines `ApplicationContext`.
+
+## Dependency Injection
+**Dependency Injection (DI)** is a design pattern in which an object's dependency is injected by the framework rather than by the object itself. It reduces coupling between multiple objects as it is dynamically injected by the framework. In DI, the framework is completely responsible for reading configuration.
+
+In the Spring Framework, DI is used to satisfy the dependencies between objects. It exits in only two types:
+* Constructor Injection: By invoking a constructor containing a number of arguments, contructor-based DI can be accomplished. These arguments are injected at the time of instance instantiation.
+* Setter Injection: Setter-based DI is attained by calling setter methods on your beans. Using setter methods defined in a Spring configuration file, the dependencies are "set" in the objects.
+
+### Constructor-based Dependency Injection
+Constructor Injection is the process of injecting the dependencies of an object through its constructor argument at the time of instantiating it. In other words, we can say that dependencies are supplied as an object through the object's own constructor. The bean definition can use a constructor with zero of more arguments to initiate the bean.
