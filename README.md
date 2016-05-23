@@ -48,3 +48,14 @@ In the Spring Framework, DI is used to satisfy the dependencies between objects.
 
 ### Constructor-based Dependency Injection
 Constructor Injection is the process of injecting the dependencies of an object through its constructor argument at the time of instantiating it. In other words, we can say that dependencies are supplied as an object through the object's own constructor. The bean definition can use a constructor with zero of more arguments to initiate the bean.
+
+### The setter-based Dependency Injection
+The setter-based DI is the method of injecting the dependencies of an object using the setter method. In the setter injection, the Spring container uses `setXXX()` of the Spring bean class to assign a dependent variable to the bean property from the bean configuration file. The setter method is more convenient to inject more dependencies since a large number of constructor arguments makes it awkward.
+
+## Autowiring in Spring
+Autowiring is a feature provided by the Spring Framework that helps use reduce some of these configurations by intelligently guessing what the reference is.
+
+Spring wires a bean's properties automatically by setting the `autowire` propery on each `<bean>` tag that you want to autowire. By default, autowiring is disabled. To enable it, specify the method of autowiring you want to apply using the `autowire` attribute of the bean you want to autowire, as shown here:
+```
+<bean id="foo" class="Foo" autowire="autowire-type" />
+```
