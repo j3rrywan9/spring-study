@@ -21,8 +21,9 @@ It identifies the object dependencies, creates them, and then injects them into 
 Sprint Container is the central component of the Spring Framework.
 Spring Container manages the lifecycle of an application's bean, which will live within Spring Container.
 Spring Container is responsible for wiring an application's beans by associating different beans together.
-Spring Container manages the components of applications using DI. The configuration metadata, which can be represented
-in XML, Java annotations, or Java code, help Spring Container to decide the object to initiate, configure, and assemble.
+Spring Container manages the components of applications using DI.
+The configuration metadata, which can be represented in XML, Java annotations, or Java code, help Spring Container to
+decide the object to initiate, configure, and assemble.
 
 Spring Container is a container of beans and behaves as a factory of beans.
 
@@ -46,6 +47,12 @@ The bean definition contains the following metadata, which represents the config
 * The behavioral configuration elements, such as scope, lifecycle, and so on, describes the bean's behavior in the
 Spring IoC container.
 
+The configuration file have `<beans>` as the root element.
+The beans element has all other individual beans configured using the `<bean>` tag.
+Every `<bean>` tag needs to specify a class attribute and can have an optional ID or name attribute.
+The ID attributes enforce uniqueness in naming the beans.
+The class attribute has the fully classified class name.
+
 Spring provides the following two interfaces that act containers:
 * BeanFactory: This is a basic container, and all other containers implement `BeanFactory`.
 * ApplicationContext: This refers to the subinterface of `BeanFactory` and is mostly used as a container in enterprise
@@ -68,12 +75,21 @@ Spring has objects of the `BeanFactory` type that behave like the factory object
 You specify the blueprints object in a configuration file, which is an XML file, and then supply it to `BeanFactory`.
 Later, if you need the instance of any object, you can ask `BeanFactory` for it, which then refers to the XML file and
 constructs the bean as specified.
-This bean is now a Spring bean as it has been created by Spring Container and is
-returned to you.
+This bean is now a Spring bean as it has been created by Spring Container and is returned to you.
 
 ### ApplicationContext
 
 The `org.springframework.context.ApplicationContext` interface defines `ApplicationContext`.
+
+#### Implementation of ApplicationContext
+
+The most commonly used `ApplicationContext` implementations are as follows:
+* `ClassPathXmlApplicationContext`: This bean definition is loaded by the container from the XML file that is present in
+the classpath by treating context definition as classpath resources.
+`ApplicationContext` can be loaded from within the application's classpath using `ClassPathXmlApplicationContext`:
+```java
+ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
+```
 
 ## Dependency Injection
 
