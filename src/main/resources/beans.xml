@@ -12,4 +12,11 @@
 
    <bean id="employeeDaoBeanDI" class="me.jerrywang.chapter2.dependencyinjection.EmployeeDaoImpl">
    </bean>
+
+    <bean id="empServiceBeanSetter" class="me.jerrywang.chapter2.setterinjection.EmployeeServiceImpl">
+        <property name="employeeDao" ref="employeeDaoBeanSetter" />
+    </bean>
+
+    <bean id="employeeDaoBeanSetter" class="me.jerrywang.chapter2.setterinjection.EmployeeDaoImpl">
+    </bean>
 </beans>
