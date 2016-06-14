@@ -2,28 +2,32 @@ apply plugin: 'java'
 apply plugin: 'idea'
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 dependencies {
-    compile 'org.springframework:spring-context:4.2.5.RELEASE'
+  compile 'javax.servlet:javax.servlet-api:3.1.0'
+  compile 'org.springframework:spring-context:4.2.5.RELEASE'
+  compile 'org.springframework:spring-jdbc:4.2.5.RELEASE'
+  compile 'org.springframework:spring-webmvc:4.2.5.RELEASE'
+  testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
 }
 
 idea {
-    project {
-        vcs = 'Git'
-    }
-    module {
-        downloadSources = true
-    }
+  project {
+    vcs = 'Git'
+  }
+  module {
+    downloadSources = true
+  }
 }
 
 task run(dependsOn: 'classes', type: JavaExec) {
-    main = 'me.jerrywang.chapter2.PayrollSystem'
-    classpath = sourceSets.main.runtimeClasspath
+  main = 'me.jerrywang.chapter2.PayrollSystem'
+  classpath = sourceSets.main.runtimeClasspath
 }
 
 task runDI(dependsOn: 'classes', type: JavaExec) {
-    main = 'me.jerrywang.chapter2.dependencyinjection.PayrollSystem'
-    classpath = sourceSets.main.runtimeClasspath
+  main = 'me.jerrywang.chapter2.dependencyinjection.PayrollSystem'
+  classpath = sourceSets.main.runtimeClasspath
 }
