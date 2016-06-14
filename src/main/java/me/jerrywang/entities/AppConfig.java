@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import javax.sql.DataSource;
 
@@ -20,7 +21,7 @@ public class AppConfig {
   @Autowired @Qualifier("cubs")
   private Team away;
 
-  @Bean
+  @Bean @Scope("prototype")
   public Game game() {
     BaseballGame baseballGame = new BaseballGame(home, away);
     baseballGame.setDataSource(dataSource);
