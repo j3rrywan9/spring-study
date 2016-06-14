@@ -1,14 +1,21 @@
 package me.jerrywang.entities;
 
+import javax.sql.DataSource;
+
 public class BaseballGame implements Game {
   private Team homeTeam;
   private Team awayTeam;
+  private DataSource dataSource;
 
   public BaseballGame() {}
 
   public BaseballGame(Team homeTeam, Team awayTeam) {
     this.homeTeam = homeTeam;
     this.awayTeam = awayTeam;
+  }
+
+  public void setDataSource(DataSource dataSource) {
+    this.dataSource = dataSource;
   }
 
   public void setHomeTeam(Team homeTeam) {
