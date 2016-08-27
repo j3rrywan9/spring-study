@@ -2,14 +2,14 @@ package me.jerrywang.entities;
 
 import javax.sql.DataSource;
 
-public class BaseballGame implements Game {
-  private Team homeTeam;
-  private Team awayTeam;
+public class BaseballGame implements IGame {
+  private ITeam homeTeam;
+  private ITeam awayTeam;
   private DataSource dataSource;
 
   public BaseballGame() {}
 
-  public BaseballGame(Team homeTeam, Team awayTeam) {
+  public BaseballGame(ITeam homeTeam, ITeam awayTeam) {
     this.homeTeam = homeTeam;
     this.awayTeam = awayTeam;
   }
@@ -18,21 +18,21 @@ public class BaseballGame implements Game {
     this.dataSource = dataSource;
   }
 
-  public void setHomeTeam(Team homeTeam) {
+  public void setHomeTeam(ITeam homeTeam) {
     this.homeTeam = homeTeam;
   }
 
   @Override
-  public Team getHomeTeam() {
+  public ITeam getHomeTeam() {
     return homeTeam;
   }
 
-  public void setAwayTeam(Team awayTeam) {
+  public void setAwayTeam(ITeam awayTeam) {
     this.awayTeam = awayTeam;
   }
 
   @Override
-  public Team getAwayTeam() {
+  public ITeam getAwayTeam() {
     return awayTeam;
   }
 

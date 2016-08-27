@@ -16,7 +16,7 @@ public class BaseballGameTest {
   private ApplicationContext ctx;
 
   @Autowired
-  private Game game;
+  private IGame game;
 
   @Test
   public void testPlayGame() throws Exception {
@@ -30,7 +30,7 @@ public class BaseballGameTest {
 
   @Test
   public void testGetAndSetHomeTeam() throws Exception {
-    Team royals = ctx.getBean("royals", Team.class);
+    ITeam royals = ctx.getBean("royals", ITeam.class);
     game.setHomeTeam(royals);
     assertEquals(royals.getName(), game.getHomeTeam().getName());
   }

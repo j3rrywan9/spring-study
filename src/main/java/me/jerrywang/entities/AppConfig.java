@@ -16,13 +16,13 @@ public class AppConfig {
   private DataSource dataSource;
 
   @Autowired @Qualifier("redSox")
-  private Team home;
+  private ITeam home;
 
   @Autowired @Qualifier("cubs")
-  private Team away;
+  private ITeam away;
 
   @Bean @Scope("prototype")
-  public Game game() {
+  public IGame game() {
     BaseballGame baseballGame = new BaseballGame(home, away);
     baseballGame.setDataSource(dataSource);
     return baseballGame;

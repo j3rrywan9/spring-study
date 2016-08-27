@@ -7,12 +7,12 @@ public class RunDemo {
   public static void main(String[] args) {
     ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-    Team awayTeam = context.getBean("royals", Royals.class);
+    ITeam awayTeam = context.getBean("royals", Royals.class);
 
-    Game game1 = context.getBean("game", Game.class);
+    IGame game1 = context.getBean("game", IGame.class);
     System.out.println(game1);
 
-    Game game2 = context.getBean("game", Game.class);
+    IGame game2 = context.getBean("game", IGame.class);
 
     game2.setAwayTeam(awayTeam);
     System.out.println(game2);
