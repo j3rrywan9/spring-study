@@ -7,7 +7,7 @@ public class PayrollSystem {
   public static void main(String[] args) {
     ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
-    EmployeeService empService = (EmployeeService) context.getBean("empServiceBeanDI");
+    IEmployeeService empService = (EmployeeServiceImpl) context.getBean("empServiceBeanDI");
 
     System.out.println("Unique Employee ID: " + empService.generateEmployeeId());
 

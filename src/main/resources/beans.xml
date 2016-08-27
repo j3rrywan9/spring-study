@@ -3,26 +3,28 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
-   <bean id="empServiceBean" class="me.jerrywang.chapter2.demo.EmployeeServiceImpl">
-   </bean>
+	<bean id="empServiceBean" class="me.jerrywang.chapter2.demo.EmployeeServiceImpl">
+	</bean>
 
-   <bean id="empServiceBeanDI" class="me.jerrywang.chapter2.dependencyinjection.EmployeeServiceImpl">
-      <constructor-arg ref="employeeDaoBeanDI" />
-   </bean>
+	<!-- Constructor-based DI -->
+	<bean id="empServiceBeanDI" class="me.jerrywang.chapter2.dependencyinjection.EmployeeServiceImpl">
+		<constructor-arg ref="employeeDaoBeanDI" />
+	</bean>
 
-   <bean id="employeeDaoBeanDI" class="me.jerrywang.chapter2.dependencyinjection.EmployeeDaoImpl">
-   </bean>
+	<bean id="employeeDaoBeanDI" class="me.jerrywang.chapter2.dependencyinjection.EmployeeDaoImpl">
+	</bean>
 
-    <bean id="empServiceBeanSetter" class="me.jerrywang.chapter2.setterinjection.EmployeeServiceImpl">
-        <property name="employeeDao" ref="employeeDaoBeanSetter" />
-    </bean>
+	<!-- Setter-based DI -->
+	<bean id="empServiceBeanSetter" class="me.jerrywang.chapter2.setterinjection.EmployeeServiceImpl">
+		<property name="employeeDao" ref="employeeDaoBeanSetter" />
+	</bean>
 
-    <bean id="employeeDaoBeanSetter" class="me.jerrywang.chapter2.setterinjection.EmployeeDaoImpl">
-    </bean>
+	<bean id="employeeDaoBeanSetter" class="me.jerrywang.chapter2.setterinjection.EmployeeDaoImpl">
+	</bean>
 
-    <bean id="empServiceBeanAuto" class="me.jerrywang.chapter2.autowiring.EmployeeServiceImpl" autowire="byType">
-    </bean>
+	<bean id="empServiceBeanAuto" class="me.jerrywang.chapter2.autowiring.EmployeeServiceImpl" autowire="byType">
+	</bean>
 
-    <bean id="employeeDaoBeanAuto" class="me.jerrywang.chapter2.autowiring.EmployeeDaoImpl">
-    </bean>
+	<bean id="employeeDaoBeanAuto" class="me.jerrywang.chapter2.autowiring.EmployeeDaoImpl">
+	</bean>
 </beans>

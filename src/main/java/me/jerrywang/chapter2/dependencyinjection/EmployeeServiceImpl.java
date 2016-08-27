@@ -1,9 +1,9 @@
 package me.jerrywang.chapter2.dependencyinjection;
 
 /**
- * A class implements me.jerrywang.chapter2.dependencyinjection.EmployeeService.
+ * A class implements me.jerrywang.chapter2.dependencyinjection.IEmployeeService.
  */
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements IEmployeeService {
 
   private EmployeeDao employeeDao = null;
 
