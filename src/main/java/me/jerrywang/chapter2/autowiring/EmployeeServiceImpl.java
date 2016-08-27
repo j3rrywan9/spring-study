@@ -1,14 +1,14 @@
-package me.jerrywang.chapter2.dependencyinjection;
+package me.jerrywang.chapter2.autowiring;
 
 /**
- * A class implements me.jerrywang.chapter2.dependencyinjection.EmployeeService.
+ * A class implements me.jerrywang.chapter2.autowiring.EmployeeService.
  */
 public class EmployeeServiceImpl implements EmployeeService {
 
   private EmployeeDao employeeDao = null;
 
-  // Constructor-based dependency injection
-  public EmployeeServiceImpl(EmployeeDao employeeDao) {
+  // Setter-based dependency injection
+  public void setEmployeeDao(EmployeeDao employeeDao) {
     this.employeeDao = employeeDao;
   }
 

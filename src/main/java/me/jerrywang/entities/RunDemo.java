@@ -4,8 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class RunDemo {
-  public static void main(String[] args) {
-    ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+  public static void main(final String[] args) {
+    final ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
     ITeam awayTeam = context.getBean("royals", Royals.class);
 
@@ -20,7 +20,7 @@ public class RunDemo {
     System.out.println(game1);
 
     System.out.println("There are " + context.getBeanDefinitionCount() + " beans");
-    for (String name : context.getBeanDefinitionNames()) {
+    for (final String name : context.getBeanDefinitionNames()) {
       System.out.println(name);
     }
   }

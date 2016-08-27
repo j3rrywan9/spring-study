@@ -83,6 +83,11 @@ the classpath by treating context definition as classpath resources.
 ```java
 ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
 ```
+* `FileSystemXmlApplicationContext`
+* `AnnotationConfigApplicationContext`: This is used to create the context by loading Java classes annotated with the
+`@Configuration` annotation instead of XML files.
+The `AnnotationConfigApplicationContext` class is used when we define Java-based Spring bean configuration for the bean
+definition instead of XML files.
 
 ## Dependency Injection
 

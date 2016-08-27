@@ -1,9 +1,9 @@
-package me.jerrywang.chapter2;
+package me.jerrywang.chapter2.demo;
 
 /**
  * A class implements me.jerrywang.chapter2.EmployeeService.
  */
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements IEmployeeService {
   /**
    * Generate a unique employee ID based on system's current time.
    */
