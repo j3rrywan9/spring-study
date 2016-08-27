@@ -28,4 +28,8 @@
 
 	<bean id="employeeDaoBeanAutowire" class="me.jerrywang.chapter2.autowiring.EmployeeDaoImpl">
 	</bean>
+
+	<!-- Bean scope -->
+	<bean id="empServiceBeanScope" class="me.jerrywang.chapter2.beanscope.EmployeeServiceImpl" scope="prototype">
+	</bean>
 </beans>
