@@ -5,6 +5,14 @@
 IoC is a programming technique in which object coupling is bound at runtime by an assembler object and is usually not
 known at compile time using static analysis.
 
+It is a process whereby objects define their dependencies, that is, the other objects they work with, only through
+constructor arguments, arguments to a factory method, or properties that set on the object instance after it is
+constructed or returned from a factory method.
+The container then *injects* those dependencies when it creates the bean.
+This process is fundamentally the inverse, hence the name *Inversion of Control* (IoC), of the bean itself controlling
+the instantiation or location of its dependencies by using construction of classes, or a mechanism such as the *Service
+Locator* pattern.
+
 IoC is a more general concept, whereas DI is a concrete design pattern.
 
 IoC is a way of thinking; a mechanism is required to activate components that provide specific functionality, due to
@@ -12,11 +20,20 @@ which IoC depends on DI.
 The IoC pattern inverts responsibility of the managing the lifecycle from the application to the framework, which makes
 writing Java application even easier.
 
+### Spring Container
+
 The container first creates the objects and then wires them together, after which it moves on to configure them, and
 finally manage their complete lifecycle.
-It identifies the object dependencies, creates them, and then injects them into the appropriate objects.
 
-### Spring Container
+In Spring, the objects that form the backbone of your application and that are managed by the Spring IoC container are
+called *beans*.
+A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container.
+Beans, and the *dependencies* among them, are reflected in the *configuration metadata* used by a container.
+
+The interface `org.springframework.context.ApplicationContext` represents the Spring IoC container and is responsible
+for instantiating, configuring, and assembling the aforementioned beans.
+The configuration metadata is represented in XML, Java annotations, or Java code.
+It allows you to express the objects that compose your application and the rich interdependencies between such objects.
 
 Sprint Container is the central component of the Spring Framework.
 Spring Container manages the lifecycle of an application's bean, which will live within Spring Container.
@@ -38,31 +55,7 @@ Beans are reflected in the configuration metadata used by a container.
 The configuration metadata defines the instruction for the container and the objects to instantiate, configure, and
 assemble.
 
-### XML-based been configuration
-
-The bean configuration information is stored in an XML file, which is used to create a bean definition using the
-`<bean>..</bean>` element.
-The bean definition contains the following metadata, which represents the configuration information of a bean:
-* A fully qualified class name that represents bean name
-* The behavioral configuration elements, such as scope, lifecycle, and so on, describes the bean's behavior in the
-Spring IoC container.
-
-The configuration file have `<beans>` as the root element.
-The beans element has all other individual beans configured using the `<bean>` tag.
-Every `<bean>` tag needs to specify a class attribute and can have an optional ID or name attribute.
-The ID attributes enforce uniqueness in naming the beans.
-The class attribute has the fully classified class name.
-
-Spring provides the following two interfaces that act containers:
-* BeanFactory: This is a basic container, and all other containers implement `BeanFactory`.
-* ApplicationContext: This refers to the subinterface of `BeanFactory` and is mostly used as a container in enterprise
-applications.
-
-To instantiate Spring Container, create an object of any of the `BeanFactory` or `ApplicationContext` implementation
-classes that supply the Spring bean configuration.
-The basic packages in the Spring IoC container of the Spring Framework are `org.springframework.beans` and
-`org.springframework.context`. An advanced configuration mechanism is provided by the `BeanFactory` interface to manage
-any type of object.
+### Bean configuration
 
 ### BeanFactory
 
@@ -113,6 +106,8 @@ time of instantiating it.
 In other words, we can say that dependencies are supplied as an object through the object's own constructor.
 The bean definition can use a constructor with zero of more arguments to initiate the bean.
 
+The Spring bean XML configuration tag `<constructor-arg>` is used for Constructor Injection.
+
 ### The setter-based Dependency Injection
 
 The setter-based DI is the method of injecting the dependencies of an object using the setter method.
@@ -121,12 +116,22 @@ the bean property from the bean configuration file.
 The setter method is more convenient to inject more dependencies since a large number of constructor arguments makes it
 awkward.
 
+The Spring bean XML configuration tag `<property>` is used to configure properties.
+
+| Attribute | Description | Occurrence |
+| --------- | ----------- | ---------- |
+| name | It takes the name of Java bean-based property | Optional |
+| value | | |
+| ref | It refers to a bean | |
+
 ## Autowiring in Spring
 
 Autowiring is a feature provided by the Spring Framework that helps use reduce some of these configurations by
 intelligently guessing what the reference is.
 
-Spring wires a bean's properties automatically by setting the `autowire` propery on each `<bean>` tag that you want to
+The Spring container can autowire relationships between collaborating beans without using the `<constructor-arg>` and
+`<property>` elements.
+Spring wires a bean's properties automatically by setting the `autowire` property on each `<bean>` tag that you want to
 autowire.
 By default, autowiring is disabled.
 To enable it, specify the method of autowiring you want to apply using the `autowire` attribute of the bean you want to
@@ -134,3 +139,32 @@ autowire, as shown here:
 ```
 <bean id="foo" class="Foo" autowire="autowire-type" />
 ```
+
+### Autowiring modes
+
+There are 5 modes of autowiring that Spring Container can use for autowiring.
+
+#### Autowiring
+
+#### Autowiring using the byType option
+
+Autowiring using `byType` enables DI based on property data types.
+
+## The bean's scope
+
+When we start Spring Container, `ApplicationContext` reads the Spring configuration file, looks for all bean definition
+available there, and then initializes beans before any call to the `getBean()` method.
+
+During initialization, `ApplicationContext` itself has initialized all the Spring beans configured in Spring XML.
+When another object makes a call to the `getBean()` method, `ApplicationContext` returns the same reference of bean that
+has already been initialized.
+This is the default behavior of beans.
+
+This leads to the concept of a bean's scope.
+We can choose the number of instances of beans depending on the scope.
+There are different scopes in which a bean can be configured.
+The `<bean>` tag has a `scope` attribute that is used to configure the scope of the bean.
+
+`xmlns` - XML namespace
+`xmlns:xsi`
+`xsl:schemaLocation`
