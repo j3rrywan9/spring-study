@@ -1,5 +1,6 @@
 package me.jerrywang.chapter2.demo;
 
+import me.jerrywang.chapter2.autowiring.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,7 +12,7 @@ public class PayrollSystem {
     // Load the bean definition from the XML file "beans.xml"
     ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
-    IEmployeeService empService = (IEmployeeService) context.getBean("empServiceBean");
+    IEmployeeService empService = (EmployeeServiceImpl) context.getBean("empServiceBean");
 
     System.out.println("Unique Employee ID: " + empService.generateEmployeeId());
   }
