@@ -7,11 +7,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Main class for package me.jerrywang.chapter2.autowiring.
  */
 public class PayrollSystem {
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     // Load the bean definition from the XML file "beans.xml"
-    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    final ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
-    EmployeeService empService = (EmployeeService) context.getBean("empServiceBeanAuto");
+    final IEmployeeService empService = (EmployeeServiceImpl) context.getBean("empServiceBeanAutowire");
 
     System.out.println("Unique Employee ID: " + empService.generateEmployeeId());
 

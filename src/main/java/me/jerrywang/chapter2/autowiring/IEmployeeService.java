@@ -1,6 +1,6 @@
 package me.jerrywang.chapter2.autowiring;
 
-public interface EmployeeService {
+public interface IEmployeeService {
   Long generateEmployeeId();
 
   String getEmployeeName();

@@ -22,9 +22,10 @@
 	<bean id="employeeDaoBeanSetter" class="me.jerrywang.chapter2.setterinjection.EmployeeDaoImpl">
 	</bean>
 
-	<bean id="empServiceBeanAuto" class="me.jerrywang.chapter2.autowiring.EmployeeServiceImpl" autowire="byType">
+	<!-- Autowiring by type -->
+	<bean id="empServiceBeanAutowire" class="me.jerrywang.chapter2.autowiring.EmployeeServiceImpl" autowire="byType">
 	</bean>
 
-	<bean id="employeeDaoBeanAuto" class="me.jerrywang.chapter2.autowiring.EmployeeDaoImpl">
+	<bean id="employeeDaoBeanAutowire" class="me.jerrywang.chapter2.autowiring.EmployeeDaoImpl">
 	</bean>
 </beans>
