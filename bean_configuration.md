@@ -32,7 +32,7 @@ This works if there is exactly one bean of that type (class) available.
 This annotation may be used on a field or parameter as a qualifier for candidate beans when autowiring.
 
 ```java
-ComponentScan
+@ComponentScan
 ```
 Configures component scanning directives for use with `@Configuration` classes.
 
