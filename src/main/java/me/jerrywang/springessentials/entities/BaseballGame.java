@@ -1,4 +1,4 @@
-package me.jerrywang.entities;
+package me.jerrywang.springessentials.entities;
 
 import javax.sql.DataSource;
 
@@ -9,6 +9,7 @@ public class BaseballGame implements IGame {
 
   public BaseballGame() {}
 
+  // Constructor-based injection
   public BaseballGame(ITeam homeTeam, ITeam awayTeam) {
     this.homeTeam = homeTeam;
     this.awayTeam = awayTeam;
@@ -18,6 +19,7 @@ public class BaseballGame implements IGame {
     this.dataSource = dataSource;
   }
 
+  // Setter-based injection
   public void setHomeTeam(ITeam homeTeam) {
     this.homeTeam = homeTeam;
   }
@@ -27,6 +29,7 @@ public class BaseballGame implements IGame {
     return homeTeam;
   }
 
+  // Setter-based injection
   public void setAwayTeam(ITeam awayTeam) {
     this.awayTeam = awayTeam;
   }

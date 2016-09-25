@@ -1,4 +1,4 @@
-package me.jerrywang.entities;
+package me.jerrywang.springessentials;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,8 +9,10 @@ import org.springframework.context.annotation.Scope;
 
 import javax.sql.DataSource;
 
+import me.jerrywang.springessentials.entities.*;
+
 @Configuration
-@ComponentScan(basePackages = "me.jerrywang.entities")
+@ComponentScan(basePackages = "me.jerrywang.springessentials.entities")
 public class AppConfig {
   @Autowired
   private DataSource dataSource;

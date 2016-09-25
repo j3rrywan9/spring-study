@@ -1,8 +1,8 @@
-package me.jerrywang.entities;
+package me.jerrywang.springessentials.entities;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class RedSox implements ITeam {
   @Override
   public String getName() {

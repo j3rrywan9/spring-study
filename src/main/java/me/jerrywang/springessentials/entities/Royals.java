@@ -1,4 +1,4 @@
-package me.jerrywang.entities;
+package me.jerrywang.springessentials.entities;
 
 import org.springframework.stereotype.Component;
 

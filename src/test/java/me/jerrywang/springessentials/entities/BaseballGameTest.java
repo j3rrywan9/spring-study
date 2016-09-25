@@ -1,4 +1,4 @@
-package me.jerrywang.entities;
+package me.jerrywang.springessentials.entities;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
