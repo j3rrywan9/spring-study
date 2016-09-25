@@ -2,9 +2,9 @@
 
 ## Java-based Configuration
 
-```java
-@Configuration
-```
+
+### `@Configuration`
+
 Indicates that a class declares one or more `@Bean` methods and may be processed by the Spring container to generate
 bean definitions and service requests for those beans at runtime, for example:
 ```java
@@ -20,32 +20,27 @@ public class AppConfig {
 
 ## Annotation Configuration
 
-```java
-@Autowired
-```
+### `@Autowired`
+
 `@Autowired` means "autowire by type" first.
 This works if there is exactly one bean of that type (class) available.
 
-```java
-@Qualifier
-```
+### `@Qualifier`
+
 This annotation may be used on a field or parameter as a qualifier for candidate beans when autowiring.
 
-```java
-@ComponentScan
-```
+### `@ComponentScan`
+
 Configures component scanning directives for use with `@Configuration` classes.
 
-```java
-@Component
-```
+### `@Component`
+
 Indicates that an annotated class is a "component".
 Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath
 scanning.
 
-```java
-@Service
-```
+### `@Service`
+
 Indicates that an annotated class is a "Service", originally defined by Domain-Driven Design as "an operation offered as
 an interface that stands alone in the model, with no encapsulated state".
 
