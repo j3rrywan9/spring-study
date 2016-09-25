@@ -1,4 +1,4 @@
-package me.jerrywang.springessentials.entities;
+package me.jerrywang.springessentials.example1.entities;
 
 public interface IGame {
   void setHomeTeam(ITeam team);

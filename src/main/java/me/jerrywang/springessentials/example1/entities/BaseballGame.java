@@ -1,4 +1,4 @@
-package me.jerrywang.springessentials.entities;
+package me.jerrywang.springessentials.example1.entities;
 
 import javax.sql.DataSource;
 
