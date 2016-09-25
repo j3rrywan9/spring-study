@@ -159,6 +159,10 @@ Autowiring using `byType` enables DI based on property data types.
 
 ## [The Spring bean lifecycle](bean_lifecycle.md)
 
+## AOP
+
+
+
 `xmlns` - XML namespace
 `xmlns:xsi`
 `xsl:schemaLocation`
