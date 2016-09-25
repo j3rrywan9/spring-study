@@ -23,7 +23,7 @@ public class AppConfig {
 ```java
 @Autowired
 ```
-`@Autowired` means "autowired by type" first.
+`@Autowired` means "autowire by type" first.
 This works if there is exactly one bean of that type (class) available.
 
 ```java
@@ -42,6 +42,15 @@ Configures component scanning directives for use with `@Configuration` classes.
 Indicates that an annotated class is a "component".
 Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath
 scanning.
+
+```java
+@Service
+```
+Indicates that an annotated class is a "Service", originally defined by Domain-Driven Design as "an operation offered as
+an interface that stands alone in the model, with no encapsulated state".
+
+This annotation serves as a specialization of `@Component`, allowing for implementation classes to be autodetected
+through classpath scanning.
 
 ## XML-based Configuration
 
