@@ -7,10 +7,11 @@ repositories {
 
 dependencies {
   compile 'javax.servlet:javax.servlet-api:3.1.0'
-  compile 'org.springframework:spring-context:4.2.5.RELEASE'
-  compile 'org.springframework:spring-jdbc:4.2.5.RELEASE'
-  compile 'org.springframework:spring-webmvc:4.2.5.RELEASE'
-  testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
+  compile 'org.springframework:spring-context:4.3.6.RELEASE'
+  compile 'org.springframework:spring-jdbc:4.3.6.RELEASE'
+  compile 'org.springframework:spring-webmvc:4.3.6.RELEASE'
+  compile 'org.projectlombok:lombok:1.16.14'
+  testCompile 'org.springframework:spring-test:4.3.6.RELEASE'
   testCompile 'junit:junit:4.12'
 }
 
@@ -24,7 +25,7 @@ idea {
 }
 
 task run(dependsOn: 'classes', type: JavaExec) {
-  main = 'me.jerrywang.chapter2.PayrollSystem'
+  main = 'me.jerrywang.chapter2.demo.PayrollSystem'
   classpath = sourceSets.main.runtimeClasspath
 }
 
