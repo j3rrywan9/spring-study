@@ -1,6 +1,6 @@
-package me.jerrywang.springessentials.example1;
+package me.jerrywang.java.spring.springessentials.example1;
 
-import me.jerrywang.springessentials.example1.entities.*;
+import me.jerrywang.java.spring.springessentials.example1.entities.*;
 
 public class RunDemoWithoutSpring {
   public static void main(final String[] args) {

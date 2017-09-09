@@ -1,4 +1,4 @@
-package me.jerrywang.springessentials.example1.entities;
+package me.jerrywang.java.spring.springessentials.example1.entities;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

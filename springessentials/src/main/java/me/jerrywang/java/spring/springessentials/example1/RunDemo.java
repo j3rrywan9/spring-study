@@ -1,9 +1,9 @@
-package me.jerrywang.springessentials.example1;
+package me.jerrywang.java.spring.springessentials.example1;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import me.jerrywang.springessentials.example1.entities.*;
+import me.jerrywang.java.spring.springessentials.example1.entities.*;
 
 public class RunDemo {
   public static void main(final String[] args) {

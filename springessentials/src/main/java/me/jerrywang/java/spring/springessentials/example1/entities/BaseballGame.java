@@ -1,4 +1,4 @@
-package me.jerrywang.springessentials.example1.entities;
+package me.jerrywang.java.spring.springessentials.example1.entities;
 
 import javax.sql.DataSource;
 
@@ -24,7 +24,6 @@ public class BaseballGame implements IGame {
     this.homeTeam = homeTeam;
   }
 
-  @Override
   public ITeam getHomeTeam() {
     return homeTeam;
   }
@@ -34,12 +33,10 @@ public class BaseballGame implements IGame {
     this.awayTeam = awayTeam;
   }
 
-  @Override
   public ITeam getAwayTeam() {
     return awayTeam;
   }
 
-  @Override
   public String playGame() {
     return Math.random() < 0.5 ? getHomeTeam().getName() : getAwayTeam().getName();
   }
