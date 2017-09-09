@@ -1,4 +1,4 @@
-package me.jerrywang.springinaction.knights;
+package me.jerrywang.java.spring.springinaction.knights;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

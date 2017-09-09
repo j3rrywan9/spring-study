@@ -12,6 +12,7 @@
 
 	<modules>
     <module>springessentials</module>
+    <module>springinaction</module>
   </modules>
 
 	<licenses>
@@ -50,6 +51,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
 			<version>${spring.core.version}</version>
 		</dependency>
 	</dependencies>

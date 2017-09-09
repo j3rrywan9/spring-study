@@ -1,4 +1,4 @@
-package me.jerrywang.springinaction.soundsystem;
+package me.jerrywang.java.spring.springinaction.soundsystem;
 
 import static org.junit.Assert.*;
 

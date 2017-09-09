@@ -1,4 +1,4 @@
-package me.jerrywang.springinaction.soundsystem;
+package me.jerrywang.java.spring.springinaction.soundsystem;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

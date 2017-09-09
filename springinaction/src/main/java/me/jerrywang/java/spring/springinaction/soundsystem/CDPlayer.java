@@ -1,4 +1,4 @@
-package me.jerrywang.springinaction.soundsystem;
+package me.jerrywang.java.spring.springinaction.soundsystem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,6 @@ public class CDPlayer implements MediaPlayer {
     this.cd = cd;
   }
 
-  @Override
   public void play() {
     cd.play();
   }
