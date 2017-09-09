@@ -1,4 +1,4 @@
-package me.jerrywang.springessentials.example1;
+package me.jerrywang.java.spring.springessentials.example1;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import me.jerrywang.springessentials.example1.entities.*;
+import me.jerrywang.java.spring.springessentials.example1.entities.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
