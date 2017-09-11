@@ -15,7 +15,7 @@ It is completely integrated with the Spring IoC container and as such allows you
 The request processing workflow of the Spring Web MVC `DispatcherServelt` is illustrated in the following diagram.
 The pattern-savvy reader will recognize that the `DispatcherServlet` is an expression of the "Front Controller" design pattern (this is a pattern that Spring Web MVC shares with many other leading web frameworks).
 
-<img src="./images/mvc.jpg" width="800px"> 
+<img src="./images/mvc.png" width="800px"> 
 
 The `DispatcherServlet` is an actual Servlet (it inherits from the `HttpServlet` base class), and as such is declared in your web application.
 You need to map requests that you want the `DispatcherServlet` to handle, by using a URL mapping.
