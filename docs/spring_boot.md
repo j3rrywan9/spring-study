@@ -110,3 +110,148 @@ It can cause particular problems for Spring Boot applications that use `@Compone
 
 We generally recommend that you locate your main application class in a root package above other classes.
 The `@EnableAutoConfiguration` annotation is often placed on your main class, and it implicitly defines a base “search package” for certain items.
+
+Using a root package also allows the `@ComponentScan` annotation to be used without needing to specify a basePackage attribute.
+You can also use the `@SpringBootApplication` annotation if your main class is in the root package.
+
+## Configuration classes
+
+Spring Boot favors Java-based configuration.
+Although it is possible to call `SpringApplication.run()` with an XML source, we generally recommend that your primary source is a `@Configuration` class.
+Usually the class that defines the main method is also a good candidate as the primary `@Configuration`.
+
+## Auto-configuration
+
+Spring Boot auto-configuration attempts to automatically configure your Spring application based on the jar dependencies that you have added.
+
+You need to opt-in to auto-configuration by adding the `@EnableAutoConfiguration` or `@SpringBootApplication` annotations to one of your `@Configuration` classes.
+
+### Gradually replacing auto-configuration
+
+Auto-configuration is noninvasive, at any point you can start to define your own configuration to replace specific parts of the auto-configuration.
+
+### Disabling specific auto-configuration
+
+If you find that specific auto-configure classes are being applied that you don’t want, you can use the exclude attribute of `@EnableAutoConfiguration` to disable them.
+
+## Spring Beans and dependency injection
+
+You are free to use any of the standard Spring Framework techniques to define your beans and their injected dependencies.
+For simplicity, we often find that using `@ComponentScan` to find your beans, in combination with `@Autowired` constructor injection works well.
+
+## Using the `@SpringBootApplication` annotation
+
+Many Spring Boot developers always have their main class annotated with `@Configuration`, `@EnableAutoConfiguration` and `@ComponentScan`.
+Since these annotations are so frequently used together (especially if you follow the best practices above), Spring Boot provides a convenient `@SpringBootApplication` alternative.
+
+The `@SpringBootApplication` annotation is equivalent to using `@Configuration`, `@EnableAutoConfiguration` and `@ComponentScan` with their default attributes.
+
+## Running your application
+
+## Developer tools
+
+## SpringApplication
+
+The `SpringApplication` class provides a convenient way to bootstrap a Spring application that will be started from a `main()` method.
+In many situations you can just delegate to the static `SpringApplication.run` method:
+```java
+public static void main(String[] args) {
+  SpringApplication.run(MySpringConfiguration.class, args);
+}
+```
+
+### Startup failure
+
+### Customizing the banner
+
+### Customizing SpringApplication
+
+If the `SpringApplication` defaults aren’t to your taste you can instead create a local instance and customize it.
+
+It is also possible to configure the `SpringApplication` using an `application.properties` file.
+
+For a complete list of the configuration options, see the `SpringApplication` Javadoc.
+
+### Fluent builder API
+
+### Application events and listeners
+
+### Web environment
+
+A `SpringApplication` will attempt to create the right type of `ApplicationContext` on your behalf.
+By default, an `AnnotationConfigApplicationContext` or `AnnotationConfigEmbeddedWebApplicationContext` will be used, depending on whether you are developing a web application or not.
+
+### Accessing application arguments
+
+### Using the ApplicationRunner or CommandLineRunner
+
+### Application exit
+
+### Admin features
+
+## Externalized Configuration
+
+Spring Boot allows you to externalize your configuration so you can work with the same application code in different environments.
+You can use properties files, YAML files, environment variables and command-line arguments to externalize configuration.
+Property values can be injected directly into your beans using the `@Value` annotation, accessed via Spring’s `Environment` abstraction or bound to structured objects via `@ConfigurationProperties`.
+
+Spring Boot uses a very particular `PropertySource` order that is designed to allow sensible overriding of values.
+
+### Configuring random values
+
+## Profiles
+
+Spring Profiles provide a way to segregate parts of your application configuration and make it only available in certain environments.
+
+### Adding active profiles
+
+## Logging
+
+Spring Boot uses Commons Logging for all internal logging, but leaves the underlying log implementation open.
+Default configurations are provided for Java Util Logging, Log4J2 and Logback.
+In each case loggers are pre-configured to use console output with optional file output also available.
+
+By default, If you use the ‘Starters’, Logback will be used for logging.
+Appropriate Logback routing is also included to ensure that dependent libraries that use Java Util Logging, Commons Logging, Log4J or SLF4J will all work correctly.
+
+### Log format
+
+### Console output
+
+The default log configuration will echo messages to the console as they are written.
+By default `ERROR`, `WARN` and `INFO` level messages are logged.
+You can also enable a “debug” mode by starting your application with a `--debug` flag.
+
+Alternatively, you can enable a “trace” mode by starting your application with a `--trace` flag (or `trace=true` in your `application.properties`).
+This will enable trace logging for a selection of core loggers (embedded container, Hibernate schema generation and the whole Spring portfolio).
+
+### Color-coded output
+
+If your terminal supports ANSI, color output will be used to aid readability.
+
+### File output
+
+By default, Spring Boot will only log to the console and will not write log files.
+If you want to write log files in addition to the console output you need to set a `logging.file` or `logging.path` property (for example in your `application.properties`).
+
+### Log levels
+
+All the supported logging systems can have the logger levels set in the Spring `Environment` (so for example in `application.properties`) using ‘logging.level.*=LEVEL’ where ‘LEVEL’ is one of TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF.
+The `root` logger can be configured using `logging.level.root`.
+
+### Custom log configuration
+
+The various logging systems can be activated by including the appropriate libraries on the classpath, and further customized by providing a suitable configuration file in the root of the classpath, or in a location specified by the Spring Environment property `logging.config`.
+
+You can force Spring Boot to use a particular logging system using the `org.springframework.boot.logging.LoggingSystem` system property.
+The value should be the fully-qualified class name of a `LoggingSystem` implementation.
+You can also disable Spring Boot’s logging configuration entirely by using a value of `none`.
+
+Depending on your logging system, the following files will be loaded:
+
+### Logback extensions
+
+Spring Boot includes a number of extensions to Logback which can help with advanced configuration.
+You can use these extensions in your `logback-spring.xml` configuration file.
+
+## Developing web applications
