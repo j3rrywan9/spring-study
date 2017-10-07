@@ -7,28 +7,30 @@
 <title>Products</title>
 </head>
 <body>
-	 <section>
-			<div class="jumbotron">
-				 <div class="container">
-						<h1>Products</h1>
-						<p>All the available products in our store</p>
-				 </div>
+	<section>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Products</h1>
+				<p>All the available products in our store</p>
 			</div>
-	 </section>
+		</div>
+	</section>
 
 	 <section class="container">
 			<div class="row">
-				 <div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+				<c:forEach items="${products}" var="product">
+				 	<div class="col-sm-6 col-md-3">
 						<div class="thumbnail">
-							 <div class="caption">
+								<div class="caption">
 									<h3>${product.name}</h3>
 									<p>${product.description}</p>
-	 <p>${product.unitPrice} USD</p>
-	 <p>Available ${product.unitsInStock} units in stock</p>
-							 </div>
+	 								<p>${product.unitPrice} USD</p>
+	 								<p>Available ${product.unitsInStock} units in stock</p>
+								</div>
+							</div>
 						</div>
-				 </div>
-			</div>
-	 </section>
+					</c:forEach>
+				</div>
+			</section>
 </body>
 </html>
