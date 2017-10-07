@@ -35,7 +35,7 @@ public class InMemoryProductRepository implements IProductRepository {
       product.setUnitPrice(rs.getBigDecimal("unit_price"));
       product.setManufacturer(rs.getString("manufacturer"));
       product.setCategory(rs.getString("category"));
-      product.setUnitsInOrder(rs.getLong("units_in_stock"));
+      product.setUnitsInStock(rs.getLong("units_in_stock"));
       product.setUnitsInOrder(rs.getLong("units_in_order"));
       product.setDiscontinued(rs.getBoolean("discontinued"));
 
