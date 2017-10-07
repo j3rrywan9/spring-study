@@ -13,7 +13,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 @Configuration
 @ComponentScan("me.jerrywang.java.spring.springmvcbeginnersguide.webstore")
 public class RootApplicationContextConfig {
-
   @Bean
   public DataSource dataSource() {
     final EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();

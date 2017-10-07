@@ -26,6 +26,15 @@ public class InMemoryProductRepository implements IProductRepository {
     return results;
   }
 
+  @Override
+  public void updateStock(final String productId, final long numberOfUnits) {
+    final String SQL = "update products set units_in_stock = :unitsInStock where id = :id";
+    final Map<String, Object> params = new HashMap<>();
+    params.put("unitsInStock", numberOfUnits);
+    params.put("id", productId);
+    jdbcTemplate.update(SQL, params);
+  }
+
   private static final class ProductMapper implements RowMapper<Product> {
     public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
       Product product = new Product();
@@ -42,5 +51,4 @@ public class InMemoryProductRepository implements IProductRepository {
       return product;
     }
   }
-
 }
