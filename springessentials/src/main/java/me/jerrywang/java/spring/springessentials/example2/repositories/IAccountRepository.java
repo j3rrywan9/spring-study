@@ -5,16 +5,16 @@ import java.util.List;
 
 import me.jerrywang.java.spring.springessentials.example2.entities.Account;
 
-public interface AccountRepository {
+public interface IAccountRepository {
   List<Account> getAccounts();
 
-  Account getAccount(Long id);
+  Account getAccount(final Long id);
 
   int getNumberOfAccounts();
 
-  Long createAccount(BigDecimal initialBalance);
+  Long createAccount(final BigDecimal initialBalance);
 
-  int deleteAccount(Long id);
+  int deleteAccount(final Long id);
 
-  void updateAccount(Account account);
+  void updateAccount(final Account account);
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import me.jerrywang.java.spring.springessentials.example2.entities.Account;
-import me.jerrywang.java.spring.springessentials.example2.repositories.AccountRepository;
+import me.jerrywang.java.spring.springessentials.example2.repositories.IAccountRepository;
 
 @Service
 @Transactional
@@ -16,21 +16,21 @@ import me.jerrywang.java.spring.springessentials.example2.repositories.AccountRe
 public class AccountService {
 
   @Autowired
-  private AccountRepository repository;
+  private IAccountRepository repository;
 
   @Transactional
-  public BigDecimal getBalance(Long id) {
+  public BigDecimal getBalance(final Long id) {
     return repository.getAccount(id).getBalance();
   }
 
-  public BigDecimal deposit(Long id, BigDecimal amount) {
-    Account account = repository.getAccount(id);
-    BigDecimal newBalance = account.getBalance().add(amount);
+  public BigDecimal deposit(final Long id, final BigDecimal amount) {
+    final Account account = repository.getAccount(id);
+    final BigDecimal newBalance = account.getBalance().add(amount);
     account.setBalance(newBalance);
     return newBalance;
   }
 
-  public BigDecimal withdraw(Long id, BigDecimal amount) {
+  public BigDecimal withdraw(final Long id, final BigDecimal amount) {
     return deposit(id, amount.negate());
   }
 }
