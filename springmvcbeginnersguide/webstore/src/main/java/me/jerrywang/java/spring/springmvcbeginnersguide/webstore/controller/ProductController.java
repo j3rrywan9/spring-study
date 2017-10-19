@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.service.IProductService;
 
@@ -12,6 +13,12 @@ import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.service.IProduc
 public class ProductController {
   @Autowired
   private IProductService productService;
+
+  @RequestMapping("/products/product")
+  public String getProductById(final Model model, @RequestParam("id") final String productId) {
+    model.addAttribute("product", productService.getProductById(productId));
+    return "product";
+  }
 
   @RequestMapping("/products")
   public String list(final Model model) {

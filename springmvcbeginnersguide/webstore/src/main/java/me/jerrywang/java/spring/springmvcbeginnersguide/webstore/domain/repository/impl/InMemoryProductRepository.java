@@ -27,6 +27,14 @@ public class InMemoryProductRepository implements IProductRepository {
   }
 
   @Override
+  public Product getProductById(final String productId) {
+    String SQL = "select * from products where id = :id";
+    final Map<String, Object> params = new HashMap<>();
+    params.put("id", productId);
+    return jdbcTemplate.queryForObject(SQL, params, new ProductMapper());
+  }
+
+  @Override
   public List<Product> getProductsByCategory(final String category) {
     String SQL = "select * from products where category = :category";
     final Map<String, Object> params = new HashMap<>();

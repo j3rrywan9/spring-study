@@ -20,6 +20,11 @@ public class ProductService implements IProductService {
   }
 
   @Override
+  public Product getProductById(final String productId) {
+    return productRepository.getProductById(productId);
+  }
+
+  @Override
   public List<Product> getProductsByCategory(final String category) {
     return productRepository.getProductsByCategory(category);
   }
