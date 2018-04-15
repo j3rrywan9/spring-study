@@ -26,8 +26,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<hikari.version>2.6.0</hikari.version>
 		<lombok.version>1.16.18</lombok.version>
-		<spring.core.version>4.3.6.RELEASE</spring.core.version>
+		<spring.core.version>4.3.13.RELEASE</spring.core.version>
 	</properties>
 
 	<build>
@@ -46,6 +47,11 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${hikari.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
