@@ -64,3 +64,34 @@ Spring provides the following two interfaces that act containers:
 
 To instantiate Spring Container, create an object of any of the `BeanFactory` or `ApplicationContext` implementation classes that supply the Spring bean configuration.
 The basic packages in the Spring IoC container of the Spring Framework are `org.springframework.beans` and `org.springframework.context`. An advanced configuration mechanism is provided by the `BeanFactory` interface to manage any type of object.
+
+## API
+
+### Class AbstractBeanFactory
+
+```java
+public abstract class AbstractBeanFactory
+extends FactoryBeanRegistrySupport
+implements ConfigurableBeanFactory
+```
+Abstract base class for `BeanFactory` implementations, providing the full capabilities of the `ConfigurableBeanFactory` SPI.
+Does *not* assume a listable bean factory: can therefore also be used as base class for bean factory implementations which obtain bean definitions from some backend resource (where bean definition access is an expensive operation).
+
+```java
+BeanFactory getParentBeanFactory()
+```
+Return the parent bean factory, or `null` if there is none.
+
+### Class DefaultListableBeanFactory
+
+```java
+Class DefaultListableBeanFactory
+extends AbstractAutowireCapableBeanFactory
+implements ConfigurableListableBeanFactory, BeanDefinitionRegistry, Serializable
+```
+Default implementation of the `ListableBeanFactory` and `BeanDefinitionRegistry` interfaces: a full-fledged bean factory based on bean definition objects.
+
+Typical usage is registering all bean definitions first (possibly read from a bean definition file), before accessing beans.
+Bean definition lookup is therefore an inexpensive operation in a local bean definition table, operating on pre-built bean definition metadata objects.
+
+Can be used as a standalone bean factory, or as a superclass for custom bean factories.
