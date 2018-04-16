@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +21,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProductController {
   @Autowired
   private IProductService productService;
+
+  @RequestMapping(value = "/products/add", method = RequestMethod.GET)
+  public String getAddNewProductForm(@ModelAttribute("newProduct") final Product newProduct) {
+    return "addProduct";
+  }
+
+  @RequestMapping(value = "/products/add", method = RequestMethod.POST)
+  public String processAddNewProductForm(@ModelAttribute("newProduct") final Product productToBeAdded) {
+    productService.addProduct(productToBeAdded);
+    return "redirect:/products";
+  }
 
   @RequestMapping("/products/product")
   public String getProductById(final Model model, @RequestParam("id") final String productId) {

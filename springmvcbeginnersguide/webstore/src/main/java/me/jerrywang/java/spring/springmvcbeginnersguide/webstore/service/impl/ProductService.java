@@ -15,6 +15,11 @@ public class ProductService implements IProductService {
   private IProductRepository productRepository;
 
   @Override
+  public void addProduct(final Product product) {
+    productRepository.addProduct(product);
+  }
+
+  @Override
   public List<Product> getAllProducts() {
     return productRepository.getAllProducts();
   }
