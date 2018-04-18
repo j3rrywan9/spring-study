@@ -9,7 +9,7 @@ The whole point of using the Spring data support is that you can do away with al
 
 The Spring JDBC module provides a kind of an abstract layer and all the tedious JDBC code that we would otherwise have to write is provided by the JDBC module, which is in the Spring framework.
 
-## THe DAO design pattern
+## The DAO design pattern
 
 The DAO design pattern can be used to provide a separation between the low-level data accessing operations and the high-level business services.
 
