@@ -6,10 +6,10 @@ The Spring Web model-view-controller (MVC) framework is designed around a `Dispa
 The default handler is based on the `@Controller` and `@RequestMapping` annotations, offering a wide range of flexible handling methods.
 With the introduction of Spring 3.0, the `@Controller` mechanism also allows you to create RESTful Web sites and applications, through the `@PathVariable` annotation and other features.
 
-## The DispatcherServlet
+## The `DispatcherServlet`
 
 Spring’s web MVC framework is, like many other web MVC frameworks, request-driven, designed around a central Servlet that dispatches requests to controllers and offers other functionality that facilitates the development of web applications.
-Spring’s DispatcherServlet however, does more than just that.
+Spring’s `DispatcherServlet` however, does more than just that.
 It is completely integrated with the Spring IoC container and as such allows you to use every other feature that Spring has.
 
 The request processing workflow of the Spring Web MVC `DispatcherServelt` is illustrated in the following diagram.
@@ -83,6 +83,23 @@ Specify the servlet mapping(s) for the `DispatcherServlet` — for example "/", 
 
 If using XML-based Spring configuration, you should extend directly from `AbstractDispatcherServletInitializer`.
 
+### Servlet mapping versus request mapping
+
+The servlet mapping specifies which web container of the Java servlet should be invoked for a given URL.
+It maps the URL patterns to servlets.
+When there is a request from a client, the servlet container decides which servlet it should forward the request to based on the servlet mapping.
+
+In contrast, request mapping guides the `DispatcherServlet` which controller method it needs to invoke as a response to the request based on the request path.
+
+### Web application context
+
+A web application context is an extension of the application context, and is designed to work with the standard servlet context.
+The web application context typically contains frontend related beans such as views and view resolvers, and so on.
+
+### View resolvers
+
+A view resolver helps the Dispatcher servlet to identify the views that have to be rendered as a response to a specific web request.
+
 ## Implementing Controllers
 
 Controllers provide access to the application behavior that you typically define through a service interface.
@@ -97,6 +114,13 @@ The `@Controller` annotation indicates that a particular class serves the role o
 Spring does not require you to extend any controller base class or reference the Servlet API.
 However, you can still reference Servlet-specific features if you need to.
 
+The `@Controller` annotation acts as a stereotype for the annotated class, indicating its role.
+The dispatcher scans such annotated classes for mapped methods and detects `@RequestMapping` annotations.
+
+However, the `@Controller` stereotype also allows for autodetection, aligned with Spring general support for detecting component classes in the classpath and auto-registering bean definitions for them.
+
+To enable autodetection of such annotated controllers, you add component scanning to your configuration.
+
 ### Mapping Requests With `@RequestMapping`
 
 You use the `@RequestMapping` annotation to map URLs onto an entire class or a particular handler method.
@@ -110,6 +134,8 @@ Most arguments can be used in arbitrary order with the only exception being `Bin
 
 #### Supported method argument types
 
+* `@PathVariable` annotated parameters for access to URI template variables.
+* `@RequestParam` annotated parameters for access to specific Servlet request parameters.
 * `java.util.Map` / `org.springframework.ui.Model` / `org.springframework.ui.ModelMap` for enriching the implicit model that is exposed to the web view.
 
 #### Supported method return types
@@ -121,6 +147,9 @@ The following are the supported return types:
 * A View object, with the model implicitly determined through command objects and @ModelAttribute annotated reference data accessor methods. The handler method may also programmatically enrich the model by declaring a Model argument (see above).
 * A `String` value that is interpreted as the logical view name, with the model implicitly determined through command objects and `@ModelAttribute` annotated reference data accessor methods.
 The handler method may also programmatically enrich the model by declaring a `Model` argument (see above).
+* An `HttpEntity<?>` or `ResponseEntity<?>` object to provide access to the Servlet response HTTP headers and contents.
+
+## Mapping the response body with the `@ResponseBody` annotation
 
 ## Configuring Spring MVC
 
@@ -136,7 +165,7 @@ public class WebConfig {
 }
 ```
 
-## Resolving views
+## 22.5 Resolving views
 
 All MVC frameworks for web applications provide a way to address views.
 Spring provides view resolvers, which enable you to render models in a browser without tying you to a specific view technology.
@@ -151,3 +180,9 @@ The `View` interface addresses the preparation of the request and hands the requ
 All handler methods in the Spring Web MVC controllers must resolve to a logical view name, either explicitly (e.g., by returning a `String`, `View`, or `ModelAndView`) or implicitly (i.e., based on conventions).
 Views in Spring are addressed by a logical view name and are resolved by a view resolver.
 Spring comes with quite a few view resolvers.
+
+## Working with `HandleExceptionResolver`
+
+In Spring, one of the main exception handling constructs is the `HandleExceptionResolver` (`org.springframework.web.servlet.HandleExceptionResolver`) interface.
+Any objects that implement this interface can resolve exceptions thrown during Controller mapping or execution.
+`HandleExceptionResolver` implementers are typically registered as beans in the web application context.
