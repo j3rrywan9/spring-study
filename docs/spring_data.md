@@ -52,3 +52,67 @@ public @interface EnableJpaRepositories
 ```
 Annotation to enable JPA repositories.
 Will scan the package of the annotated configuration class for Spring Data repositories by default.
+
+### Spring Data REST
+
+#### Introduction
+
+REST web services have become the number one means for application integration on the web.
+In its core, REST defines that a system consists of resources that clients interact with.
+These resources are implemented in a hypermedia driven way.
+Spring MVC offers a solid foundation to build theses kinds of services.
+But implementing even the simplest tenet of REST web services for a multi-domain object system can be quite tedious and result in a lot of boilerplate code.
+
+Spring Data REST builds on top of Spring Data repositories and automatically exports those as REST resources.
+It leverages hypermedia to allow clients to find functionality exposed by the repositories and integrates these resources into related hypermedia based functionality automatically.
+
+#### Getting started
+
+The simplest way to get to started is if you are building a Spring Boot application.
+That's because Spring Data REST has both a starter as well as auto-configuration.
+
+##### Basic settings for Spring Data REST
+
+###### Which repositories get exposed by default?
+
+###### Changing the base URI
+
+By default, Spring Data REST serves up REST resources at the root URI, "/".
+There are multiple ways to change the base path.
+
+With Spring Boot 1.2+, all it takes is a single property in `application.properties`:
+```java
+spring.data.rest.base-path=/api
+```
+
+##### Starting the application
+
+At this point, you must also configure your key data store.
+
+Spring Data REST officially supports:
+* Spring Data JPA
+
+#### Repository resources
+
+##### Fundamentals
+
+The core functionality of Spring Data REST is to export resources for Spring Data repositories.
+Thus, the core artifact to look at and potentially tweak to customize the way the exporting works is the repository interface.
+Assume the following repository interface:
+```java
+public interface OrderRepository extends CrudRepository<Order, Long>
+```
+For this repository, Spring Data REST exposes a collection resource at `/orders`.
+The path is derived from the uncapitalized, pluralized, simple class name of the domain class being managed.
+It also exposes an item resource for each of the items managed by the repository under the URI template `/orders/{id}`.
+
+By default the HTTP methods to interact with these resources map to the according methods of `CrudRepository`.
+Read more on that in the sections on collection resources and item resources.
+
+##### Default state codes
+
+For the resources exposed, we use a set of default status codes:
+* `200 OK` - for plain `GET` requests.
+* `201 Created` - for `POST` and `PUT` requests that create new resources.
+* `204 No Content` - for `PUT`, `PATCH`, and `DELETE` requests if the configuration is set to not return bodies for resource updates (`RepositoryRestConfiguration.returnBodyOnUpdate`).
+If the configuration value is set to include responses for `PUT`, `200 OK` will be returned for updates, `201 Created` will be returned for resource created through `PUT`.
