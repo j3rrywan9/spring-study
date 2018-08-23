@@ -3,6 +3,7 @@ package me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.reposit
 import java.util.List;
 
 import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.Product;
+import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.WebStoreUser;
 
 public interface IProductRepository {
   void addProduct(final Product product);
@@ -10,4 +11,5 @@ public interface IProductRepository {
   Product getProductById(final String productId);
   List<Product> getProductsByCategory(final String category);
   void updateStock(final String productId, final long numberOfUnits);
+  WebStoreUser getWebStoreUserByUsername(final String username);
 }

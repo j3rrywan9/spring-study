@@ -5,16 +5,15 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.Product;
+import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.WebStoreUser;
+import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.repository.IProductRepository;
 import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.Product;
-import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.repository.IProductRepository;
 
 @Repository
 public class InMemoryProductRepository implements IProductRepository {
@@ -86,6 +85,14 @@ public class InMemoryProductRepository implements IProductRepository {
     jdbcTemplate.update(SQL, params);
   }
 
+  @Override
+  public WebStoreUser getWebStoreUserByUsername(final String username) {
+    final String SQL = "select * from users where username = :username";
+    final Map<String, Object> params = new HashMap<>();
+    params.put("username", username);
+    return jdbcTemplate.queryForObject(SQL, params, new WebStoreUserMapper());
+  }
+
   private static final class ProductMapper implements RowMapper<Product> {
     public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
       Product product = new Product();
@@ -100,6 +107,16 @@ public class InMemoryProductRepository implements IProductRepository {
       product.setDiscontinued(rs.getBoolean("discontinued"));
 
       return product;
+    }
+  }
+
+  private static final class WebStoreUserMapper implements RowMapper<WebStoreUser> {
+    public WebStoreUser mapRow(ResultSet rs, int rowNum) throws SQLException {
+      WebStoreUser user = new WebStoreUser();
+      user.setUsername(rs.getString("username"));
+      user.setPassword(rs.getString("password"));
+
+      return user;
     }
   }
 }

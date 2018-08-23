@@ -12,3 +12,10 @@ create table products (
 	units_in_order bigint,
 	discontinued boolean
 );
+
+drop table users if exists;
+
+create table users (
+  username varchar(50),
+  password varchar(50)
+);
