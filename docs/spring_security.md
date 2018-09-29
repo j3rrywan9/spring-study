@@ -6,7 +6,7 @@
 
 Typically, a software system will be divided into two high-level realms, such as unauthenticated (or anonymous) and authenticated.
 
-Application functionality in the anonymous realm is the functionality that is independent of a webStoreUser's identity.
+Application functionality in the anonymous realm is the functionality that is independent of a user's identity.
 
 ## Authorization
 
@@ -25,7 +25,7 @@ There is a particular emphasis on supporting projects built using The Spring Fra
 
 As you probably know two major areas of application security are "authentication" and "authorization" (or "access-control").
 These are the two main areas that Spring Security targets.
-"Authentication" is the process of establishing a principal is who they claim to be (a "principal" generally means a webStoreUser, device or some other system which can perform an action in your application).
+"Authentication" is the process of establishing a principal is who they claim to be (a "principal" generally means a user, device or some other system which can perform an action in your application).
 "Authorization" refers to the process of deciding whether a principal is allowed to perform an action within your application.
 To arrive at the point where an authorization decision is needed, the identity of the principal has already been established by the authentication process.
 These concepts are common, and not at all specific to Spring Security.
@@ -54,7 +54,7 @@ There are three main areas of interest: authorizing web requests, authorizing wh
 
 Contains core authentication and access-control classes and interfaces, remoting support and basic provisioning APIs.
 Required by any application which uses Spring Security.
-Supports standalone applications, remote clients, method (service layer) security and JDBC webStoreUser provisioning.
+Supports standalone applications, remote clients, method (service layer) security and JDBC user provisioning.
 
 #### Web
 
@@ -90,6 +90,18 @@ You can configure web security by overriding `WebSecurityConfigurerAdapter`'s th
 | `configure(HttpSecurity)` | Override to configure how requests are secured by interceptors. |
 | `configure(AuthenticationManagerBuilder)` | Override to configure user-details services. |
 
+Although the default filter chain is fine for our needs, the default `configure(HttpSecurity)` effectively looks like this:
+```java
+protected void configure(HttpSecurity http) throws Exception {
+  http.authorizeRequests()
+      .anyRequest().authenticated()
+      .and()
+      .formLogin().and()
+      .httpBasic();
+}
+```
+This simple default configuration specifies how HTTP requests should be secured and what options a client has for authenticating the user.
+
 ## Selecting user details services
 
 What you need is a user store - some place where usernames, passwords, and other data can be kept and retrieved from when making authentication decisions.
@@ -98,9 +110,9 @@ Fortunately, Spring Security is extremely flexible and is capable of authenticat
 
 ### Working with an in-memory user store
 
-Since your security configuration class extends `WebSecurityConfigurerAdapter`, the easiest way to configure a webStoreUser store is to override the `configure()` method that takes an `AuthenticationManagerBuilder` as a parameter.
+Since your security configuration class extends `WebSecurityConfigurerAdapter`, the easiest way to configure a user store is to override the `configure()` method that takes an `AuthenticationManagerBuilder` as a parameter.
 `AuthenticationManagerBuilder` has several methods that can be used to configure Spring Security’s authentication support.
-With the `inMemoryAuthentication()` method, you can enable and configure and optionally populate an in-memory webStoreUser store.
+With the `inMemoryAuthentication()` method, you can enable and configure and optionally populate an in-memory user store.
 
 ```java
 
@@ -109,13 +121,13 @@ With the `inMemoryAuthentication()` method, you can enable and configure and opt
 
 ### Authenticating against database tables
 
-It's quite common for webStoreUser data to be stored in a relational database, accessed via JDBC.
-To configure Spring Security to authenticate against a JDBC-backed webStoreUser store, you can use the `jdbcAuthentication()` method.
+It's quite common for user data to be stored in a relational database, accessed via JDBC.
+To configure Spring Security to authenticate against a JDBC-backed user store, you can use the `jdbcAuthentication()` method.
 
-### Configuring a custom webStoreUser service
+### Configuring a custom user service
 
-All you need to do is implement the `loadUserByUsername()` method to find a webStoreUser given the webStoreUser's username.
-`loadUserByUsername()` then returns a `UserDetails` object representing the given webStoreUser.
+All you need to do is implement the `loadUserByUsername()` method to find a user given the user's username.
+`loadUserByUsername()` then returns a `UserDetails` object representing the given user.
 
 ## Intercepting requests
 
