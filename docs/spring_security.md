@@ -117,21 +117,37 @@ With the `inMemoryAuthentication()` method, you can enable and configure and opt
 ```java
 
 ```
+Simply calling `inMemoryAuthentication()` will enable an in-memory user store.
 
+Therefore, you need to call the `withUser()` method to add a new user to the in-memory user store.
 
 ### Authenticating against database tables
 
 It's quite common for user data to be stored in a relational database, accessed via JDBC.
 To configure Spring Security to authenticate against a JDBC-backed user store, you can use the `jdbcAuthentication()` method.
 
+The only thing you must configure is a `DataSource` so that it's able to access the relational database.
+
+#### Overriding the default user queries
+
+#### Working with encoded passwords
+
 ### Configuring a custom user service
+
+In that case, you'll need to implement a custom implementation of the `UserDetailsService` interface.
 
 All you need to do is implement the `loadUserByUsername()` method to find a user given the user's username.
 `loadUserByUsername()` then returns a `UserDetails` object representing the given user.
 
 ## Intercepting requests
 
+In any given application, not all requests should be secured equally.
+
 The key to fine-tuning security for each request is to override the `configure(HttpSecurity)` method.
 
 The `HttpSecurity` object given to `configure()` can be used to configure several aspects of HTTP security.
 Here you're calling `authorizeRequests()` and then calling methods on the object it returns to indicate that you want to configure request-level security details.
+
+The path given to `antMatchers()` supports Ant-style wildcarding.
+
+There's also a `regexMatchers()` method that accepts regular expressions to define request paths.
