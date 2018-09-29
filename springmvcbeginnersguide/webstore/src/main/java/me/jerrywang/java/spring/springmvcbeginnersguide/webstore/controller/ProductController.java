@@ -2,10 +2,12 @@ package me.jerrywang.java.spring.springmvcbeginnersguide.webstore.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+
 import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.Product;
 import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.exception.NoProductsFoundUnderCategoryException;
 import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.exception.ProductNotFoundException;
 import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.service.IProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("market")
 public class ProductController {
+
   @Autowired
   private IProductService productService;
 

@@ -1,11 +1,13 @@
 package me.jerrywang.java.spring.springmvcbeginnersguide.webstore.controller;
 
-import java.math.BigDecimal;
-import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.Product;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
+import java.math.BigDecimal;
+
+import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.domain.Product;
 import me.jerrywang.java.spring.springmvcbeginnersguide.webstore.config.WebApplicationContextConfig;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
 @ContextConfiguration(classes = WebApplicationContextConfig.class)
 @WebAppConfiguration
 public class ProductControllerTest {
+
   @Autowired
   private WebApplicationContext webApplicationContext;
 
@@ -33,7 +36,7 @@ public class ProductControllerTest {
 
   @Test
   public void testGetProducts() throws Exception {
-    this.mockMvc.perform(get("/products")).andExpect(model().attributeExists("products"));
+    this.mockMvc.perform(get("/market/products")).andExpect(model().attributeExists("products"));
   }
 
   @Test
@@ -43,7 +46,7 @@ public class ProductControllerTest {
     product.setManufacturer("Apple");
     product.setCategory("Smartphone");
     product.setUnitsInStock(450);
-    this.mockMvc.perform(get("/products/product").param("id", "P1234"))
+    this.mockMvc.perform(get("/market/products/product").param("id", "P1234"))
         .andExpect(model().attributeExists("product"))
         .andExpect(model().attribute("product", product));
   }
