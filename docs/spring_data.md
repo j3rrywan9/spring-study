@@ -68,8 +68,31 @@ It leverages hypermedia to allow clients to find functionality exposed by the re
 
 #### Getting started
 
+##### Adding Spring Data REST to a Spring Boot project
+
 The simplest way to get to started is if you are building a Spring Boot application.
 That's because Spring Data REST has both a starter as well as auto-configuration.
+
+##### Configuring Spring Data REST
+
+Spring Data REST configuration is defined in a class called `RepositoryRestMvcConfiguration` and that class can just be imported into your applications configuration.
+
+To customize the configuration, register a `RepositoryRestConfigurer` (or extend `RepositoryRestConfigurerAdapter`) and implement or override the `configure...` methods relevant to your use case.
+
+```java
+void configureRepositoryRestConfiguration(RepositoryRestConfiguration config)
+```
+Override this method to add additional configuration.
+
+```java
+class RepositoryRestConfiguration
+```
+Spring Data REST configuration options.
+
+```java
+RepositoryRestConfiguration exposeIdsFor(Class<?>... domainTypes)
+```
+Set the list of domain types for which we will expose the ID value as a normal property.
 
 ##### Basic settings for Spring Data REST
 
@@ -109,10 +132,50 @@ It also exposes an item resource for each of the items managed by the repository
 By default the HTTP methods to interact with these resources map to the according methods of `CrudRepository`.
 Read more on that in the sections on collection resources and item resources.
 
-##### Default state codes
+###### Default state codes
 
 For the resources exposed, we use a set of default status codes:
 * `200 OK` - for plain `GET` requests.
 * `201 Created` - for `POST` and `PUT` requests that create new resources.
 * `204 No Content` - for `PUT`, `PATCH`, and `DELETE` requests if the configuration is set to not return bodies for resource updates (`RepositoryRestConfiguration.returnBodyOnUpdate`).
 If the configuration value is set to include responses for `PUT`, `200 OK` will be returned for updates, `201 Created` will be returned for resource created through `PUT`.
+
+##### Resource discoverability
+
+A core principle of HATEOAS is that resources should be discoverable through the publication of links that point to the available resources.
+There are a few competing de-facto standards of how to represent links in JSON.
+By default, Spring Data REST uses HAL to render responses.
+HAL defines links to be contained in a property of the returned document.
+
+Resource discovery starts at the top level of the application.
+By issuing a request to the root URL under which the Spring Data REST application is deployed, the client can extract a set of links from the returned JSON object that represent the next level of resources that are available to the client.
+
+##### The collection resource
+
+Spring Data REST exposes a collection resource named after the uncapitalized, pluralized version of the domain class the exported repository is handling.
+Both the name of the resource and the path can be customized using the `@RepositoryRestResource` on the repository interface.
+
+###### Supported HTTP Methods
+
+Collections resources support both `GET` and `POST`.
+All other HTTP methods will cause a `405 Method Not Allowed`.
+
+**GET**
+
+Returns all entities the repository serves through its `finaAll(...)` method.
+
+##### The item resource
+
+Spring Data REST exposes a resource for individual collection items as sub-resources of the collection resource.
+
+###### Supported HTTP Methods
+
+Item resources generally support `GET`, `PUT`, `PATCH` and `DELETE` unless explicit configuration prevents that.
+
+**GET**
+
+Returns a single entity.
+
+**DELETE**
+
+Deletes the resource exposed.
