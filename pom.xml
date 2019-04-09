@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hikari.version>2.6.0</hikari.version>
     <lombok.version>1.16.18</lombok.version>
-    <spring.core.version>4.3.18.RELEASE</spring.core.version>
+    <spring.core.version>5.0.8.RELEASE</spring.core.version>
   </properties>
 
 	<build>
