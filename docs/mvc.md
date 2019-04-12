@@ -78,12 +78,12 @@ protected abstract Class<?>[] getRootConfigClasses()
 Specify `@Configuration` and/or `@Component` classes to be provided to the root application context.
 
 ```java
-protected abstract Class<?>[]	getServletConfigClasses()
+protected abstract Class<?>[] getServletConfigClasses()
 ```
 Specify `@Configuration` and/or `@Component` classes to be provided to the dispatcher servlet application context.
 
 ```java
-protected abstract String[]	getServletMappings()
+protected abstract String[] getServletMappings()
 ```
 Specify the servlet mapping(s) for the `DispatcherServlet` — for example "/", "/app", etc.
 
