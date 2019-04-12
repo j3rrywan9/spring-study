@@ -44,6 +44,12 @@ Base class for `WebApplicationInitializer` implementations that register a `Disp
 Concrete implementations are required to implement `createServletApplicationContext()`, as well as `getServletMappings()`, both of which get invoked from `registerDispatcherServlet(ServletContext)`.
 
 ```java
+public abstract class AbstractContextLoaderInitializer
+implements WebApplicationInitializer
+```
+Convenient base class for `WebApplicationInitializer` implementations that register a `ContextLoaderListener` in the servlet context.
+
+```java
 protected abstract WebApplicationContext createServletApplicationContext()
 ```
 Create a `DispatcherServlet` (or other kind of `FrameworkServlet`-derived dispatcher) with the specified `WebApplicationContext`.
