@@ -41,6 +41,9 @@
 					<target>1.8</target>
 					<meminitial>128m</meminitial>
 					<maxmem>1g</maxmem>
+					<compilerArgs>
+						<arg>-Xlint:deprecation</arg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 		</plugins>
