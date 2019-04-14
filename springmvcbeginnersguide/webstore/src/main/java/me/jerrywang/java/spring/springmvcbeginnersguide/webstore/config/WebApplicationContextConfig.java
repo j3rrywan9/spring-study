@@ -8,14 +8,14 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan("me.jerrywang.java.spring.springmvcbeginnersguide.webstore")
-public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
+public class WebApplicationContextConfig implements WebMvcConfigurer {
   @Override
   public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
     configurer.enable();
