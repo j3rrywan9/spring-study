@@ -62,6 +62,20 @@ The TestContext framework is agnostic of the actual testing framework in use, th
 
 `@ActiveProfiles` is a class-level annotation that is used to declare which bean definition profiles should be active when loading an `ApplicationContext` for an integration test.
 
+### Spring TestContext Framework
+
+The *Spring TestContext Framework* (located in the `org.springframework.test.context` package) provides generic, annotation-driven unit and integration testing support that is agnostic of the testing framework in use.
+The TestContext framework also places a great deal of importance on *convention over configuration* with reasonable defaults that can be overridden through annotation-based configuration.
+
+In addition to generic testing infrastructure, the TestContext framework provides explicit support for JUnit 4, JUnit Jupiter (a.k.a., JUnit 5), and TestNG.
+For JUnit 4 and TestNG, Spring provides `abstract` support classes.
+Furthermore, Spring provides a custom JUnit `Runner` and custom JUnit `Rules` for *JUnit 4* as well as a custom `Extension` for *JUnit Jupiter* that allow one to write so-called *POJO* test classes.
+POJO test classes are not required to extend a particular class hierarchy such as the `abstract` support classes.
+
+#### Key abstractions
+
+The core of the framework consists of the `TestContextManager` class and the `TestContext`, `TestExecutionListener`, and `SmartContextLoader` interfaces.
+
 ## References
 
 [Testing](https://docs.spring.io/spring/docs/5.0.5.RELEASE/spring-framework-reference/testing.html)
